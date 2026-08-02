@@ -1,6 +1,5 @@
 {
-  "name": "conversacion_respuesta",
-  "strict": true,
+  "$schema": "https://json-schema.org",
   "schema": {
     "type": "object",
     "properties": {
