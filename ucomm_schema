@@ -1,6 +1,4 @@
 {
-  "name": "asistente_recepcionista_ucomm",
-  "strict": true,
   "schema": {
     "type": "object",
     "properties": {
