@@ -1,9 +1,29 @@
 {
-  "$schema": "https://json-schema.org",
-  "type": "object",
-  "properties": {
-    "name": { "type": "string" },
-    "email": { "type": "string", "format": "email" }
-  },
-  "required": ["name", "email"]
+  "name": "ucomm_schema",
+  "strict": true,
+  "schema": {
+    "type": "object",
+    "properties": {
+      "mensaje": {
+        "type": "string",
+        "description": "Mensaje principal de respuesta en la conversación."
+      },
+      "nombre": {
+        "type": "string",
+        "description": "Nombre de la persona (opcional, puede estar vacía o ausente).",
+        "minLength": 0
+      },
+      "numero_telefono": {
+        "type": "string",
+        "description": "Número de teléfono (opcional, puede estar vacío o ausente).",
+        "pattern": "^(|[0-9\\-\\+\\s]{6,20})$"
+      }
+    },
+    "required": [
+      "mensaje",
+      "nombre",
+      "numero_telefono"
+    ],
+    "additionalProperties": false
+  }
 }
