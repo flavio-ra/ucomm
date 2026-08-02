@@ -1,5 +1,6 @@
 {
-  "$schema": "https://json-schema.org",
+  "name": "schema",
+  "strict": true,
   "schema": {
     "type": "object",
     "properties": {
