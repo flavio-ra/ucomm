@@ -1,76 +1,29 @@
 {
+  "name": "conversacion_respuesta",
   "schema": {
     "type": "object",
     "properties": {
-      "respuesta_usuario": {
-        "type": "array",
-        "description": "Lista secuencial de bloques de respuesta que el asistente proporciona al usuario, siguiendo los lineamientos de tono, contenido y contexto, y nunca dejando frases inconclusas.",
-        "items": {
-          "type": "object",
-          "properties": {
-            "mensaje": {
-              "type": "string",
-              "description": "Respuesta textual breve, clara y profesional, siguiendo el protocolo del asistente. Puede incluir enlaces y confirmaciones según sea apropiado.",
-              "minLength": 1,
-              "maxLength": 320
-            },
-            "es_continuacion": {
-              "type": "boolean",
-              "description": "Indica si este bloque es continuación lógica del bloque anterior."
-            }
-          },
-          "required": [
-            "mensaje",
-            "es_continuacion"
-          ],
-          "additionalProperties": false
-        }
+      "mensaje": {
+        "type": "string",
+        "description": "Mensaje principal de respuesta en la conversación."
       },
-      "flujo_datos_usuario": {
-        "type": "object",
-        "description": "Variables internas para almacenar los datos de contacto del usuario si desea ser contactado: nombre y teléfono, o null si aún no se han recibido.",
-        "properties": {
-          "cliente_nombre": {
-            "anyOf": [
-              {
-                "type": "string",
-                "description": "Nombre completo del usuario, registrado tal como lo proporciona. Solo presente si el usuario lo ha dado.",
-                "minLength": 2,
-                "maxLength": 80
-              },
-              {
-                "type": "null",
-                "description": "Se mantiene null si el nombre completo aún no ha sido proporcionado."
-              }
-            ]
-          },
-          "cliente_telefono": {
-            "anyOf": [
-              {
-                "type": "string",
-                "description": "Número de teléfono completo del usuario, con mínimo 8 y máximo 20 dígitos y posible manejo de símbolos básicos como +, -, (, ), espacio.",
-                "minLength": 8,
-                "maxLength": 20,
-                "pattern": "^[+\\d ()-]{8,20}$"
-              },
-              {
-                "type": "null",
-                "description": "Se mantiene null si el teléfono aún no ha sido proporcionado."
-              }
-            ]
-          }
-        },
-        "required": [
-          "cliente_nombre",
-          "cliente_telefono"
-        ],
-        "additionalProperties": false
+      "nombre": {
+        "type": "string",
+        "description": "Nombre de la persona (opcional, puede estar vacía o ausente).",
+        "minLength": 0
+      },
+      "numero_telefono": {
+        "type": "string",
+        "description": "Número de teléfono (opcional, puede estar vacío o ausente).",
+        "pattern": "^(|[0-9\\-\\+\\s]{6,20})$"
       }
     },
     "required": [
-      "respuesta_usuario",
-      "flujo_datos_usuario"
+      "mensaje",
+      "nombre",
+      "numero_telefono"
     ],
     "additionalProperties": false
-  }
+  },
+  "strict": true
 }
